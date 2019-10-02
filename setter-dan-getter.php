@@ -1,10 +1,12 @@
 <?php
 class Produk {
 
-    public      $judul ,
+    private      $judul ,
                 $penulis ,
                 $penerbit;
+
     protected   $diskon = 0;
+    
     private     $harga;
 
     public function __construct($judul = "judul", $penerbit= "penerbit" , 
@@ -15,6 +17,9 @@ class Produk {
         $this->harga = $harga;
     }
 
+    public function getJudul(){
+        return $this->judul;
+    }
     public function getHarga(){
         return $this->harga - ($this->harga * $this->diskon / 100);
     }
@@ -80,6 +85,12 @@ $produk2 = new Game("Uncharted", "Neli K", "Sony Entertaiment", 35000, 50);
 echo $produk1->getInfoKomik();
 echo "<br>";
 echo $produk2->getInfoGame();
+
 echo "<hr>";
+
 $produk2->setDiskon(50);
 echo $produk2->getHarga();
+
+echo "<hr>";
+
+echo $produk2->getJudul();
