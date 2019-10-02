@@ -5,16 +5,14 @@ class Produk {
             $penulis ,
             $penerbit ,
             $harga,
-            $jmlHalaman,
             $waktuMain;
 
     public function __construct($judul = "judul", $penerbit= "penerbit" , 
-                                $penulis = "penulis", $harga = 0, $jmlHalaman = 0, $waktuMain = 0){
+                                $penulis = "penulis", $harga = 0, $waktuMain = 0){
         $this->judul = $judul;
         $this->penulis = $penulis;
         $this->penerbit = $penerbit;
         $this->harga = $harga;
-        $this->jmlHalaman = $jmlHalaman;
         $this->waktuMain = $waktuMain;
     }
 
@@ -31,14 +29,24 @@ class Produk {
 }
 
 class Komik extends Produk {
+    public $jmlHalaman;
+
+    public function __construct($judul = "judul", $penerbit= "penerbit" , 
+                                $penulis = "penulis", $harga = 0, $jmlHalaman = 0){
+                                    parent::__construct(judul = "judul", $penerbit= "penerbit" , 
+                                    $penulis = "penulis", $harga = 0);
+                                    
+                                    $this->jmlHalaman = $jmlHalaman;
+                                
+                                }
     public function getInfoKomik(){
-        $str = "Komik : {$this->getinfoProduk() } - {$this->jmlHalaman} Halaman).";
+        $str = "Komik : ". parent::getInfoProduk() ." - {$this->jmlHalaman} Halaman).";
         return $str;
     }
 }
 class Game extends Produk {
     public function getInfoGame(){
-        $str = "Game : {$this->getInfoProduk()} - {$this->waktuMain} Jam).";
+        $str = "Game : ". parent::getInfoProduk() "- {$this->waktuMain} Jam).";
         return $str;
     }
 }
@@ -52,8 +60,8 @@ class CetakInfoProduk{
     }
 }
 
-$produk1 = new Komik("Naruto", "Masashi Kishimoto", "Shonen Jump", 30000, 100, 0);
-$produk2 = new Game("Uncharted", "Neli K", "Sony Entertaiment", 35000, 0 , 50);
+$produk1 = new Komik("Naruto", "Masashi Kishimoto", "Shonen Jump", 30000,  0);
+$produk2 = new Game("Uncharted", "Neli K", "Sony Entertaiment", 35000, 50);
 // $produk3 = new Produk("Dragon Ball");
 
 echo $produk1->getInfoKomik();
