@@ -23,4 +23,15 @@ class Contoh {
 
 }
 
+$obj = new Contoh;
+echo $obj->halo();
+echo $obj->halo();
+echo $obj->halo();
+
+echo "<hr>";
+
+$obj2 = new Contoh;
+echo $obj2->halo();
+echo $obj2->halo();
+echo $obj2->halo();
 
