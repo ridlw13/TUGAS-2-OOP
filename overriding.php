@@ -4,16 +4,14 @@ class Produk {
     public $judul ,
             $penulis ,
             $penerbit ,
-            $harga,
-            $waktuMain;
+            $harga;
 
     public function __construct($judul = "judul", $penerbit= "penerbit" , 
-                                $penulis = "penulis", $harga = 0, $waktuMain = 0){
+                                $penulis = "penulis", $harga = 0){
         $this->judul = $judul;
         $this->penulis = $penulis;
         $this->penerbit = $penerbit;
         $this->harga = $harga;
-        $this->waktuMain = $waktuMain;
     }
 
     public function getLabel() {
@@ -31,22 +29,26 @@ class Produk {
 class Komik extends Produk {
     public $jmlHalaman;
 
-    public function __construct($judul = "judul", $penerbit= "penerbit" , 
-                                $penulis = "penulis", $harga = 0, $jmlHalaman = 0){
-                                    parent::__construct(judul = "judul", $penerbit= "penerbit" , 
-                                    $penulis = "penulis", $harga = 0);
-                                    
-                                    $this->jmlHalaman = $jmlHalaman;
-                                
-                                }
+    public function __construct($judul = "judul", $penerbit= "penerbit" ,$penulis = "penulis", $harga = 0, $jmlHalaman = 0){
+            parent::__construct($judul, $penerbit, $penulis, $harga);
+            $this->jmlHalaman = $jmlHalaman ;
+
+}
     public function getInfoKomik(){
         $str = "Komik : ". parent::getInfoProduk() ." - {$this->jmlHalaman} Halaman).";
         return $str;
     }
 }
 class Game extends Produk {
+    public $waktuMain;
+
+    public function __construct($judul = "judul", $penerbit= "penerbit" ,$penulis = "penulis", $harga = 0, $waktuMain = 0){
+            parent::__construct($judul, $penerbit, $penulis, $harga);
+            $this->waktuMain = $waktuMain;
+
+    }
     public function getInfoGame(){
-        $str = "Game : ". parent::getInfoProduk() "- {$this->waktuMain} Jam).";
+        $str = "Game : ". parent::getInfoProduk() ." - {$this->waktuMain} Jam).";
         return $str;
     }
 }
