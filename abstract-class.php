@@ -1,7 +1,7 @@
 <?php
 class Produk {
 
-    private      $judul ,
+    private     $judul ,
                 $penulis ,
                 $penerbit,
                 $harga,
@@ -81,6 +81,7 @@ class Komik extends Produk {
         return $str;
     }
 }
+
 class Game extends Produk {
     public $waktuMain;
 
@@ -99,8 +100,18 @@ class Game extends Produk {
 
 
 class CetakInfoProduk{
-    public function cetak( $produk ){
-        $str = "{$produk->judul}| {$produk->getlabel()} | (Rp. {$produk->harga})";
+    public $daftarProduk = array();
+
+    public function tambahProduk( Produk $produk){
+        $this->daftarProduk[] = $produk;
+    }
+
+    public function cetak( ){
+        $str = "Daftar Produk : <br>";
+
+        foreach( $this->daftarProduk as $p){
+            $str .= "-{$p->getInfoProduk()} <br>";
+        }
         return $str;
     }
 }
@@ -109,15 +120,7 @@ $produk1 = new Komik("Naruto", "Masashi Kishimoto", "Shonen Jump", 30000,  0);
 $produk2 = new Game("Uncharted", "Neli K", "Sony Entertaiment", 35000, 50);
 // $produk3 = new Produk("Dragon Ball");
 
-echo $produk1->getInfoKomik();
-echo "<br>";
-echo $produk2->getInfoGame();
-
-echo "<hr>";
-
-$produk2->setDiskon(50);
-echo $produk2->getHarga();
-
-echo "<hr>";
-$produk2->setJudul("Apaa aja lah");
-echo $produk2->getJudul();
+$cetakProduk = new CetakInfoProduk();
+$cetakProduk->tambahProduk ($produk1);
+$cetakProduk->tambahProduk ($produk2);
+echo $cetakProduk->cetak();
