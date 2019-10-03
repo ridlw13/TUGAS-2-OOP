@@ -1,4 +1,4 @@
-<?php namespace Apps\Produk;
+<?php namespace Apps\Service;
 
 
 class User {
